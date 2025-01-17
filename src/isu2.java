@@ -289,6 +289,58 @@ public class isu2 {
 	    answer = scanner.nextLine();
 	    System.out.println("\nFinals!! ");
 	    
-	    
+	    System.out.println("Final Match: " + semiWinner1 + " vs " + semiWinner2);
+	    int t1Goals = (int) (Math.random() * 5);  // Goals scored by team 1
+        int t2Goals = (int) (Math.random() * 5);  // Goals scored by team 2
+        if (t1Goals == t2Goals) {
+        	System.out.println("Looks like we have a draw, going to penalties! ");
+        	
+        	int t1Score = 0;
+        	int t2Score = 0;
+        	for (int i = 0; i<3; i++) {
+        		int t1Turn = (int) (Math.random() * 2); //generates a 0 or 1, 0 means they score on their turn, 1 means they don't
+        		if (t1Turn == 0) { //if 0, means they score, so add 1 to a1Score
+        			t1Score++;
+        		}
+        		int t2Turn = (int) (Math.random() * 2);
+        		if (t2Turn == 0) {
+        			t2Score++;
+        		}
+        	}
+        	
+        	while (t1Score == t2Score) {
+        		System.out.println("We are in sudden death! ");
+        		int a1Turn = (int) (Math.random() * 2);  // 0 = scores, 1 = doesn't score
+                if (a1Turn == 0) {
+                    t1Score++;
+                }
+
+                int t2Turn = (int) (Math.random() * 2);  // 0 = scores, 1 = doesn't score
+                if (t2Turn == 0) {
+                    t2Score++;
+                }
+
+                System.out.println("After sudden death round: Team A1: " + t1Score + " - Team B2: " + t2Score);
+        	}
+        	
+        	if (t1Score > t2Score) {
+        		System.out.println(a1 + " won the match in shootout");
+        		a1Goals++; //add 1 goal, to show they won in shootout, and can determine who won later
+        	} else {
+        		System.out.println(b2 + " won the match in shootout");
+        		b2Goals++;
+        	}
+        }
+        
+        String finalWinner = "";
+        if (t1Goals > t2Goals) {
+        	finalWinner = semiWinner1;
+        	System.out.println(semiWinner1 + " won the tournament, with a final score of " + t1Goals + " - " + t2Goals);
+        } else {
+        	finalWinner = semiWinner2;
+        	System.out.println(semiWinner2 + " won the tournament, with a final score of " + t2Goals + " - " + t1Goals);
+        }
+        
+        
 	}
 }
